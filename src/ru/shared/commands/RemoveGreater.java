@@ -11,7 +11,7 @@ import java.util.TreeMap;
 public class RemoveGreater extends Command{
     private int id;
     /**
-     * Проверка что id - целое число и вызов метода {@link HumanBeingMap#removeGreater(int)}
+     * Метод,который удаляет элементы с id выше данного
      * @param humanBeingMap класс с коллекцией, над которой производятся действия
      */
     @Override
@@ -35,13 +35,16 @@ public class RemoveGreater extends Command{
         setMessage("Elements with id greater than " + id + " removed");
     }
 
+    /** Переопредленный метод,который проверяет, что id-целое число
+     * @return
+     */
     @Override
     public boolean isValid() {
         try{
             id = Integer.parseInt(getValue());
             return true;
         }catch (NumberFormatException e){
-            System.out.println("Id must be a positive number");
+            System.out.println("Id must be  integer number");
             return false;
         }
     }

@@ -11,7 +11,7 @@ import ru.shared.HumanBeingController.HumanBeingReader;
 public class Update extends Command{
     private Long id;
     /**
-     * Проверка что id - целое число, проверка на наличие элемента с данным id, затем вызов метода {@link HumanBeingMap#updateHumanBeing(Long, Integer, HumanBeing)}
+     * Проверка на наличие элемента с данным id, затем вызов метода {@link HumanBeingMap#updateHumanBeing(Long, Integer, HumanBeing)}
      * @param humanBeingMap класс с коллекцией, над которой производятся действия
      */
     @Override
@@ -26,13 +26,16 @@ public class Update extends Command{
             }
     }
 
+    /**Метод проверяет, чтобы id было целым числом
+     * @return
+     */
     @Override
     public boolean isValid() {
         try{
             id = Long.parseLong(getValue());
             return true;
         }catch (NumberFormatException e){
-            System.out.println("Id must be a positive number");
+            System.out.println("Id must be integer number");
             return false;
         }
     }

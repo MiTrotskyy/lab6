@@ -5,6 +5,10 @@ import ru.shared.commands.*;
 import java.net.*;
 import java.io.*;
 import java.nio.channels.DatagramChannel;
+/**
+ * Класс Client для считыания команд, передачи их для выполнения на сервер и вывода результата выполнения
+ */
+
 
 public class Client {
     public static void main(String[] args) throws Exception{

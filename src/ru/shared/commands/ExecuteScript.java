@@ -20,11 +20,6 @@ public class ExecuteScript extends Command{
         this();
         this.workingScripts = workingScripts;
     }
-
-    /**
-     * проверятся наличие имени файла в {@link CommandData#workingScripts}, при отсутствии файл туда добавляется, и команды в файле выполняются в обычном порядке с использованием {@link CommandData}. По завершении файл удаляется из {@link CommandData#workingScripts}
-     */
-
     public ExecuteScript(){
         commands.put("help", new Help());
         commands.put("info", new Info());
@@ -42,6 +37,11 @@ public class ExecuteScript extends Command{
         commands.put("filter_greater_than_car", new FilterGreaterThanCar());
         commands.put("print_descending", new PrintDescending());
     }
+
+    /**
+     * Переопределенный метод реализующий проверку на вызов сразу двух execute_script, если команда отстутсвует-создается
+     * @param humanBeingMap класс с коллекцией, над которой производятся действия
+     */
     @Override
     public void execute(HumanBeingMap humanBeingMap){
         String fileName = getValue();
@@ -73,6 +73,12 @@ public class ExecuteScript extends Command{
         }
         workingScripts.remove("execute_script " + fileName);
     }
+
+    /**
+     * переданная строка разбивеются на две строки(по пробелу), если вторая строка пустая, управление передаётся команде execute_script, в обратном случае, в качестве аргумента подаётся вторая строка
+     * @param input
+     * @param humanBeingMap
+     */
     private void executeFromFile(String input, HumanBeingMap humanBeingMap){
         if (input.isEmpty()){
             return;
