@@ -11,7 +11,7 @@ import java.util.*;
 public class ClientCommandData {
     /** Поле comand */
     private Command command;
-    /** Карта команд. Ключ - строковое название команды. Значение - классы, реализующие интерфейс Command*/
+    /** Карта команд. Ключ - строковое название команды. Значение - классы-наследники абстрактного класса Command*/
     private static Map<String, Command> commandMap = new TreeMap<>();
     /** Конструктор {@link ClientCommandData#commandMap}командами и их строковыми названиями*/
     public ClientCommandData(){
