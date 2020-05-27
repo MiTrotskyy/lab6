@@ -10,7 +10,7 @@ import java.util.TreeMap;
 public class RemoveGreaterKey extends Command{
     private Integer key;
     /**
-     * Метод, который удаляет элементы у которых ключ превышает заданный
+     * Проверка что ключ - целое число и вызов команды {@link HumanBeingMap#removeGreaterByKey(int)}
      * @param humanBeingMap класс с коллекцией, над которой производятся действия
      */
     @Override
@@ -24,9 +24,6 @@ public class RemoveGreaterKey extends Command{
         setMessage("Elements with key greater than " + key + " removed");
     }
 
-    /** Переопределнный метод, который проверяет, что key-целое число
-     * @return
-     */
     @Override
     public boolean isValid() {
         try{

@@ -5,8 +5,6 @@ import ru.shared.basicClasses.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-/**Класс HumanBeingReader - конструктор для обьектов коллекции
- */
 public class HumanBeingReader {
     private Scanner in;
     private HumanBeing humanBeing;

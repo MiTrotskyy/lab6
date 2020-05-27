@@ -8,17 +8,11 @@ import java.net.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/** Класс CommandsExchangeServer реализующий получение, проверку и отправление обратно клиенту пакетиков
- */
 public class CommandsExchangeServer {
     static Logger LOGGER = Logger.getLogger(CommandsExchangeServer.class.getName());
     private String name;
     private DatagramSocket datagramSocket;
     private HumanBeingMap humanBeingMap;
-
-    /** Конструктор Commandexchangeserver
-     * @throws IOException
-     */
 
     public CommandsExchangeServer() throws IOException {
         LOGGER.log(Level.INFO, "Открытие сокета");

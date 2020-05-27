@@ -2,9 +2,6 @@ package ru.shared.commands;
 
 import java.io.*;
 
-/** Класс Command-конструктор комманд 
- */
-
 public abstract class Command implements Executable, Serializable, Valid {
     private String value;
 
@@ -31,11 +28,6 @@ public abstract class Command implements Executable, Serializable, Valid {
         this.message+=message;
     }
 
-    /**
-     * Метод реализующий серилизацию команд
-     * @return data
-     * @throws IOException
-     */
     public byte[] toByteArray() throws IOException {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
