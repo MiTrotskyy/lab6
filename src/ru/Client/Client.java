@@ -5,6 +5,10 @@ import ru.shared.commands.*;
 import java.net.*;
 import java.io.*;
 import java.nio.channels.DatagramChannel;
+/**
+ * Класс Client для считывания команд, передачи их для выполнения на сервер и вывода результата выполнения
+ */
+
 
 public class Client {
     public static void main(String[] args) throws Exception{
@@ -13,7 +17,7 @@ public class Client {
         DatagramChannel datagramChannel = null;
         DatagramSocket datagramSocket = null;
         datagramChannel = DatagramChannel.open();
-        int port = 8000;
+        int port = 2228;
         InetAddress inetAddress = InetAddress.getLocalHost();
         datagramChannel.bind(null);
         while (true) {
@@ -29,14 +33,21 @@ public class Client {
                     sendBuf = command.toByteArray();
                     DatagramPacket datagramPacket = new DatagramPacket(sendBuf, sendBuf.length, inetAddress, port);
                     datagramSocket.send(datagramPacket);
-                    datagramPacket = new DatagramPacket(receiveBuf, receiveBuf.length);
-                    datagramSocket.receive(datagramPacket);
-                    ObjectInputStream objectInputStream = new ObjectInputStream(new ByteArrayInputStream(receiveBuf));
-                    command = (Command) objectInputStream.readObject();
-                    objectInputStream.close();
-                    System.out.println("");
-                    System.out.print(command.getMessage());
-                    if (command.getMessage().contains("Logging out")){
+                    datagramSocket.setSoTimeout(60000);
+                    try {
+                        datagramPacket = new DatagramPacket(receiveBuf, receiveBuf.length);
+                        datagramSocket.receive(datagramPacket);
+                        ObjectInputStream objectInputStream = new ObjectInputStream(new ByteArrayInputStream(receiveBuf));
+                        command = (Command) objectInputStream.readObject();
+                        objectInputStream.close();
+                        System.out.println("");
+                        System.out.print(command.getMessage());
+                        if (command.getMessage().contains("Logging out")) {
+                            System.exit(0);
+                        }
+                    } catch (SocketTimeoutException e){
+                        datagramChannel.close();
+                        System.out.println("No response from server. Logging out");
                         System.exit(0);
                     }
                 }

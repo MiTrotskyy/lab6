@@ -11,8 +11,7 @@ import ru.shared.HumanBeingController.HumanBeingReader;
 public class Insert extends Command{
     private Integer key;
     private HumanBeing humanBeing;
-    /**
-     * Создаётся объект класса {@link HumanBeingReader}, из него HumanBeing добавляется в коллекцию
+    /** Метод реализующий добавление элемента по ключу и проверку на наличие уже существующего элемента с таким ключом
      * @param humanBeingMap класс с коллекцией, над которой производятся действия
      */
     @Override
@@ -25,6 +24,9 @@ public class Insert extends Command{
         }
     }
 
+    /** Переопределнный метод, в котором реализуется проверка на правильность типа ключа и создание экземпляра класса {@link HumanBeingReader}, из него HumanBeing добавляется в коллекцию
+     * @return
+     */
     @Override
     public boolean isValid() {
         try{
