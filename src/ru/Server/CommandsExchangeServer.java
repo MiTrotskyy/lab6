@@ -24,16 +24,19 @@ public class CommandsExchangeServer {
      */
 
     public CommandsExchangeServer() throws IOException {
-        datagramSocket = new DatagramSocket(PORT);
-        LOGGER.log(Level.INFO, "Datagram socket opened");
-        humanBeingMap = new HumanBeingMap();
-        LOGGER.log(Level.INFO, "HumanBeingMap object created");
     }
 
     public void run() {
-        try {
-            datagramSocket.setSoTimeout(TIMEOUT);
-            LOGGER.log(Level.INFO, "Timeout set");
+        try{
+            System.out.println("Enter port");
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+            String line = bufferedReader.readLine();
+            int PORT = Integer.parseInt(line);
+            datagramSocket = new DatagramSocket(PORT);
+            LOGGER.log(Level.INFO, "Datagram socket opened");
+            humanBeingMap = new HumanBeingMap();
+            LOGGER.log(Level.INFO, "HumanBeingMap object created");
+
             while (true) {
                 byte[] buf = new byte[BYTE_ARRAY_SIZE];
                 //Получение пакета от клиента
@@ -58,13 +61,11 @@ public class CommandsExchangeServer {
                 datagramSocket.send(datagramPacket);
                 LOGGER.log(Level.INFO, "Packet with command send to client");
             }
-        } catch (SocketTimeoutException e) {
-            datagramSocket.close();
-            LOGGER.log(Level.INFO, "Channel closed");
-            System.out.println("Timeout expired. Data receiving is done");
         } catch (IOException | ClassNotFoundException e) {
             LOGGER.log(Level.WARNING, "Exception happened");
             e.printStackTrace();
+        } catch (NumberFormatException e){
+            System.out.println("Invalid port");
         }
     }
 }
