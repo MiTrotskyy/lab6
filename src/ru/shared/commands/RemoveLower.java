@@ -12,7 +12,7 @@ import java.util.TreeMap;
 public class RemoveLower extends Command{
     private int id;
     /**
-     * Метод реализующий удаление элментов,id которых ниже данного
+     * Проверка что id - целое число и вызов метода {@link HumanBeingMap#removeLower(int)}
      * @param humanBeingMap класс с коллекцией, над которой производятся действия
      */
     @Override
@@ -22,18 +22,16 @@ public class RemoveLower extends Command{
                 .filter(entry->entry.getValue().getId() >= id)
                 .forEach(entry->updatedMap.put(entry.getKey(), entry.getValue()));
         humanBeingMap.setHumanBeingTreeMap(updatedMap);
-        setMessage("Elements with id lower than " + id + " removed");
+        setMessage("Elements with id greater than " + id + " removed");
     }
-    /** Переопредленный метод, который проверяет, что id-целое число
-     * @return
-     */
+
     @Override
     public boolean isValid() {
         try{
             id = Integer.parseInt(getValue());
             return true;
         }catch (NumberFormatException e){
-            System.out.println("Id must be  integer number");
+            System.out.println("Id must be a positive number");
             return false;
         }
     }

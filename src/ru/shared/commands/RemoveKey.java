@@ -9,8 +9,7 @@ import ru.shared.HumanBeingController.HumanBeingMap;
 public class RemoveKey extends Command{
     private Integer key;
     /**
-     * Метод,который реализует проверку на наличие элменетта с заданным ключом и
-     * его удаление с помощью метода{@Link HumanBeingMap#removeHumanBeing}
+     * Проверка, что key - целое число, что есть элемент с данным ключом и вызов метода {@link HumanBeingMap#removeHumanBeing(Integer)}
      * @param humanBeingMap класс с коллекцией, над которой производятся действия
      */
     @Override
@@ -22,9 +21,7 @@ public class RemoveKey extends Command{
             humanBeingMap.removeHumanBeing(key);
         }
     }
-    /** Переопределнный метод,который проверяет, что key-целое число
-     * @return
-     */
+
     @Override
     public boolean isValid() {
         try{

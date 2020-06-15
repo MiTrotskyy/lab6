@@ -9,11 +9,16 @@ import ru.shared.HumanBeingController.HumanBeingMap;
 public class FilterGreaterThanCar extends Command{
     private String carName;
     /**
-     * Метод рализующий проверку коллекции на пустоту и вывод элементов,если поле Car больше заданного
+     * Проход по карте элементов {@link ru.shared.HumanBeingController.HumanBeing}, проверка и вывод, если поле Car больше заданного
      * @param humanBeingMap класс с коллекцией, над которой производятся действия
      */
     @Override
     public void execute(HumanBeingMap humanBeingMap) {
+//        for (Map.Entry e : humanBeingMap.getHumanBeingTreeMap().entrySet()) {
+//            if (humanBeingMap.getHumanBeingTreeMap().get(e.getKey()).getCar().getName().compareTo(carName) > 0) {
+//                System.out.println("Key: " + e.getKey() + " Value: " + e.getValue().toString());
+//            }
+//        }
         if (humanBeingMap.getHumanBeingTreeMap().isEmpty()){
             updateMessage("Collection is empty.");
         }else {
@@ -23,9 +28,6 @@ public class FilterGreaterThanCar extends Command{
         }
     }
 
-    /** Переопределнный метод справляется с ошибкой, которая возникает при заполненным полем car
-     * @return
-     */
     @Override
     public boolean isValid() {
         if (getValue().isEmpty()) {

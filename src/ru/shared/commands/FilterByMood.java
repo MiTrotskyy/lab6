@@ -11,11 +11,16 @@ import java.util.ArrayList;
 public class FilterByMood extends Command{
     private Mood mood;
     /**
-     * Метод реализоывает проверку коллекции на пустоту и вывод всех элементов карты,у которых поле mood равно заданному
+     * Значение проверяется на наличие в {@link Mood}, при наличии находятся и выводятся все элементы карты в {@link HumanBeingMap} у которых поле mood равно заданному
      * @param humanBeingMap класс с коллекцией, над которой производятся действия
      */
     @Override
     public void execute(HumanBeingMap humanBeingMap) {
+//        for (Map.Entry e : humanBeingMap.getHumanBeingTreeMap().entrySet()) {
+//            if (humanBeingMap.getHumanBeingTreeMap().get(e.getKey()).getMood().equals(mood)) {
+//                updateMessage("Key: " + e.getKey() + " Value: " + e.getValue().toString() + "\n");
+//            }
+//        }
         if (humanBeingMap.getHumanBeingTreeMap().isEmpty()){
             updateMessage("Collection is empty.");
         }else {
@@ -25,9 +30,6 @@ public class FilterByMood extends Command{
         }
     }
 
-    /** Переопределнный метод исключает такие ошибки как: введенного настроения нет в списке возможных, не ввели настроение
-     * @return
-     */
     @Override
     public boolean isValid() {
         ArrayList<String> moodList = Mood.getArrayList();
