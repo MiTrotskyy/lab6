@@ -3,13 +3,17 @@ package ru.Client;
 import ru.shared.commands.*;
 
 import java.util.*;
+/**
+ * Класс ClientCommandData для управления командами
+ */
+
 
 public class ClientCommandData {
-
+    /** Поле comand */
     private Command command;
-
+    /** Карта команд. Ключ - строковое название команды. Значение - классы-наследники абстрактного класса Command*/
     private static Map<String, Command> commandMap = new TreeMap<>();
-
+    /** Конструктор {@link ClientCommandData#commandMap}командами и их строковыми названиями*/
     public ClientCommandData(){
         commandMap.put("help", new Help());
         commandMap.put("info", new Info());
@@ -27,10 +31,12 @@ public class ClientCommandData {
         commandMap.put("filter_greater_than_car", new FilterGreaterThanCar());
         commandMap.put("print_descending", new PrintDescending());
     }
-
     public Command getCommand(){
         return this.command;
     }
+/**
+ * переданная строка разбивеются на две строки(по пробелу), если вторая строка пустая, управление передаётся команде с введённым названием и аргументом null, в обратном случае, в качестве аргумента подаётся вторая строка
+ * @param input строчка, введённая пользователем*/
 
     public void setCommand(String input){
         if (input.isEmpty()){
@@ -58,6 +64,12 @@ public class ClientCommandData {
             }
         }
     }
+
+    /**
+     * Метод, котороый возвращает true, если введенные данные возможно использовать с командой, и false,если нельзя
+     * @return true, если введенные данные возможно использовать с командой
+     * @return false, если введенные данные нельзя использовать с командой
+     */
     public boolean isValid(){
         return command.isValid();
     }

@@ -11,20 +11,22 @@ import ru.shared.HumanBeingController.HumanBeingReader;
 public class Insert extends Command{
     private Integer key;
     private HumanBeing humanBeing;
-    /**
-     * Создаётся объект класса {@link HumanBeingReader}, из него HumanBeing добавляется в коллекцию
+    /** Метод реализующий добавление элемента по ключу и проверку на наличие уже существующего элемента с таким ключом
      * @param humanBeingMap класс с коллекцией, над которой производятся действия
      */
     @Override
     public void execute(HumanBeingMap humanBeingMap) {
         if (humanBeingMap.getHumanBeingTreeMap().get(key) == null) {
             humanBeingMap.addHumanBeing(key, humanBeing);
-            setMessage("Element "+ humanBeing.toString() + " added in collection");
+            setMessage("Element "+ humanBeing.toString() + " added in collection\n");
         }else{
-            setMessage("Element with this key already exist. First delete it with \"remove_key\" command.");
+            setMessage("Element with this key already exist. First delete it with \"remove_key\" command.\n");
         }
     }
 
+    /** Переопределнный метод, в котором реализуется проверка на правильность типа ключа и создание экземпляра класса {@link HumanBeingReader}, из него HumanBeing добавляется в коллекцию
+     * @return
+     */
     @Override
     public boolean isValid() {
         try{
